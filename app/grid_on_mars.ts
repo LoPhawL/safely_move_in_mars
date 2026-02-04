@@ -1,7 +1,9 @@
 import { TRobotCoordinate } from "./types/robotCoordinate.type";
 import { TRobotOrientation } from "./types/robotOrientation.type";
-import { TRobotRotation } from "./types/robotRotation.type";
-import { rotateRobot } from "./utils/rotateRobot";
+import { TRobotInstruction } from "./types/TRobotInstruction";
+import { instructionHandlers } from "./utils/robotInstructions";
+import { OrientationModifier } from "./utils/robotInstructions/OrientationInstructions/OrientationModifier";
+import { PositionModifier } from "./utils/robotInstructions/PositionInstructions/PositionModifier";
 
 function analyseRobotPositions (
     gridConfiguration: [number, number],
@@ -31,41 +33,23 @@ function analyseRobotPositions (
         let robotOrientation: TRobotOrientation =  robotSetting.initialPosition.orientation;
 
         // for type safety
-        const arrayOfMovementInstructions: TRobotRotation[] = robotSetting.movementInstructions.split('') as TRobotRotation[];
+        const arrayOfInstructions: TRobotInstruction[] = robotSetting.movementInstructions.split('') as TRobotInstruction[];
 
-        instructionOfRobot: for (let instruction of arrayOfMovementInstructions) {
+        instructionOfRobot: for (let instruction of arrayOfInstructions) {
 
             //rotate
-            if (instruction === 'L' || instruction === 'R') {
+            if (instructionHandlers[instruction] instanceof OrientationModifier) { // orientation modifiers rotate (orient) the robot in its current coordinate.
 
-                robotOrientation = rotateRobot(robotOrientation, instruction);
+                robotOrientation = instructionHandlers[instruction].handle(robotOrientation);
                 
-            } else if (instruction === 'F') {
+            } else if (instructionHandlers[instruction] instanceof PositionModifier) { // position modifiers change the coordinates.
 
                 if (losingPositions.includes(`${robotCoordinate[0]} ${robotCoordinate[1]} ${robotOrientation}`)) {
                     
                     continue instructionOfRobot;
                 } 
 
-                let newRobotCoordinate: TRobotCoordinate;
-                // move forward
-                if (robotOrientation === 'N') {
-
-                    // x = x, y = y + 1
-                    newRobotCoordinate = [robotCoordinate[0], robotCoordinate[1] + 1];
-                } else if (robotOrientation === 'E') { 
-
-                    // x = x + 1, y = y
-                    newRobotCoordinate = [robotCoordinate[0] + 1, robotCoordinate[1]];
-                } else if (robotOrientation === 'S') {
-
-                    // x = x, y = y - 1
-                    newRobotCoordinate = [robotCoordinate[0], robotCoordinate[1] - 1];
-                } else {
-
-                    // x = x - 1, y = y
-                    newRobotCoordinate = [robotCoordinate[0] - 1, robotCoordinate[1]];
-                }
+                let newRobotCoordinate: TRobotCoordinate = instructionHandlers[instruction].handle(robotOrientation, robotCoordinate);
 
                 if (newRobotCoordinate[0] < bound_x_0 || newRobotCoordinate[0] > bound_x_1 || newRobotCoordinate[1] < bound_y_0 || newRobotCoordinate[1] > bound_y_1) {
 
@@ -75,13 +59,11 @@ function analyseRobotPositions (
                     continue eachRobot;
                 } else {
 
-                    // move it forward
                     robotCoordinate = newRobotCoordinate;
                 }
             }
         }
         console.log(`${robotCoordinate[0]} ${robotCoordinate[1]} ${robotOrientation}`);
-
     }
 }
 
