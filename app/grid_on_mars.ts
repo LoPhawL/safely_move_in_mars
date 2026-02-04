@@ -23,6 +23,11 @@ function analyseRobotPositions (
     const bound_x_1 = gridConfiguration[0];
     const bound_y_1 = gridConfiguration[1];
 
+    if (bound_x_1 > 50 || bound_y_1 > 50) {
+
+        throw new Error(`E1: Mars cannot be split into more than 50 units in any cartesian direction.😑 (${bound_x_1}, ${bound_y_1})`);
+    }
+
     const losingPositions: string[] //[number, number, TRobotOrientation][]
      = [];
 
@@ -34,6 +39,11 @@ function analyseRobotPositions (
 
         // for type safety
         const arrayOfInstructions: TRobotInstruction[] = robotSetting.movementInstructions.split('') as TRobotInstruction[];
+
+        if (arrayOfInstructions.length > 100) {
+
+            throw new Error(`E2: No robot is built to withstand more than 100 commands at once.😴`);
+        }
 
         instructionOfRobot: for (let instruction of arrayOfInstructions) {
 
