@@ -1,3 +1,4 @@
+import { TRobotCoordinate } from "./types/robotCoordinate.type";
 import { TRobotOrientation } from "./types/robotOrientation.type";
 import { TRobotRotation } from "./types/robotRotation.type";
 import { rotateRobot } from "./utils/rotateRobot";
@@ -7,7 +8,7 @@ function analyseRobotPositions (
     gridConfiguration: [number, number],
     robotsSettings: { 
         initialPosition: {
-            coordinate: [number, number],
+            coordinate: TRobotCoordinate,
             orientation: TRobotOrientation
         },
         movementInstructions: string
@@ -24,7 +25,7 @@ function analyseRobotPositions (
     for (const robotSetting of robotsSettings) {
 
         // initialize robot
-        let robotPosition: [number, number] = JSON.parse(JSON.stringify(robotSetting.initialPosition.coordinate));
+        let robotCoordinate: TRobotCoordinate = JSON.parse(JSON.stringify(robotSetting.initialPosition.coordinate));
         let robotOrientation: TRobotOrientation =  robotSetting.initialPosition.orientation;
 
         // for type safety
@@ -36,12 +37,32 @@ function analyseRobotPositions (
             if (instruction === 'L' || instruction === 'R') {
 
                 robotOrientation = rotateRobot(robotOrientation, instruction);
+                continue;
             }
 
-            
+            if (instruction === 'F') {
+
+                let newRobotCoordinate: TRobotCoordinate;
+                // move forward
+                if (robotOrientation === 'N') {
+                    // x = x, y = y + 1
+                    newRobotCoordinate = [robotCoordinate[0], robotCoordinate[1] + 1];
+
+                } else if (robotOrientation === 'E') { 
+                    // x = x + 1, y = y
+                    newRobotCoordinate = [robotCoordinate[0] + 1, robotCoordinate[1]];
+
+                } else if (robotOrientation === 'S') {
+                    // x = x, y = y - 1
+                    newRobotCoordinate = [robotCoordinate[0], robotCoordinate[1] - 1];
+
+                } else
+                    // x = x - 1, y = y
+                    newRobotCoordinate = [robotCoordinate[0] - 1, robotCoordinate[1]];
+                }
+            }
+
         }
-    
-    }
 }
 
 

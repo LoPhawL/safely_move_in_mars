@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "main": "output/app/grid_on_mars.js",
   "directories": {
-    "test": "test",
-    "run": "tsc && node app/grid_on_mars.js"
+    "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check_robots": "tsc && node output/app/grid_on_mars.js",
+    "start": "npm run check_robots"
   },
   "keywords": [],
   "author": "",
