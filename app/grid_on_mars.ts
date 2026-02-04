@@ -5,7 +5,7 @@ import { instructionHandlers } from "./utils/robotInstructions";
 import { OrientationModifier } from "./utils/robotInstructions/OrientationInstructions/OrientationModifier";
 import { PositionModifier } from "./utils/robotInstructions/PositionInstructions/PositionModifier";
 
-function analyseRobotPositions (
+export function analyseRobotPositions (
     gridConfiguration: [number, number],
     robotsSettings: { 
         initialPosition: {
@@ -76,31 +76,3 @@ function analyseRobotPositions (
         console.log(`${robotCoordinate[0]} ${robotCoordinate[1]} ${robotOrientation}`);
     }
 }
-
-
-analyseRobotPositions(
-    [5, 3],
-    [
-        {
-            initialPosition: {
-                coordinate: [1, 1],
-                orientation: 'E'
-            },
-            movementInstructions: 'RFRFRFRF'
-        },
-        {
-            initialPosition: {
-                coordinate: [3, 2],
-                orientation: 'N'
-            },
-            movementInstructions: 'FRRFLLFFRRFLL'
-        },
-        {
-            initialPosition: {
-                coordinate: [0, 3],
-                orientation: 'W'
-            },
-            movementInstructions: 'LLFFFLFLFL'
-        }
-    ]
-)
