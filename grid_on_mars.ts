@@ -1,3 +1,22 @@
+const cartesianRotationResult = {
+    N: {
+        L: 'W',
+        R: 'E'
+    },
+    E: {
+        L: 'N',
+        R: 'S'
+    },
+    S: {
+        L: 'E',
+        R: 'W'
+    },
+    W: {
+        L: 'S',
+        R: 'N'
+    }
+}
+
 function analyseRobotPositions (
     gridConfiguration: [number, number],
     robotsSettings: { 
@@ -15,6 +34,15 @@ function analyseRobotPositions (
 
     const bound_x_1 = gridConfiguration[0];
     const bound_y_1 = gridConfiguration[1];
+
+    for (const robotSetting of robotsSettings) {
+
+        // initialize robot
+        let robotPosition: [number, number] = JSON.parse(JSON.stringify(robotSetting.initialPosition.coordinate));
+        let robotOrientation: string = robotSetting.initialPosition.orientation;
+
+
+    }
 }
 
 
