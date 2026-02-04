@@ -7,7 +7,6 @@ export class MoveForward extends PositionModifier {
     override rePosition(robotOrientation: TRobotOrientation, robotCoordinate: TRobotCoordinate) {
 
         let newRobotCoordinate: TRobotCoordinate;
-                // move forward
         if (robotOrientation === 'N') {
 
             // x = x, y = y + 1

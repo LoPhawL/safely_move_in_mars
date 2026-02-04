@@ -42,7 +42,7 @@ function analyseRobotPositions (
 
         if (arrayOfInstructions.length > 100) {
 
-            throw new Error(`E2: No robot is built to withstand more than 100 commands at once.😴`);
+            throw new Error('E2: No robot is built to withstand more than 100 commands at once.😴');
         }
 
         instructionOfRobot: for (let instruction of arrayOfInstructions) {
