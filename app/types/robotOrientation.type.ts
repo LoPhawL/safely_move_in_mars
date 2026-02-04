@@ -1,0 +1,1 @@
+export type TRobotOrientation = 'N' | 'E' | 'S' | 'W';

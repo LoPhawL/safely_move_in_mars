@@ -1,28 +1,14 @@
-const cartesianRotationResult = {
-    N: {
-        L: 'W',
-        R: 'E'
-    },
-    E: {
-        L: 'N',
-        R: 'S'
-    },
-    S: {
-        L: 'E',
-        R: 'W'
-    },
-    W: {
-        L: 'S',
-        R: 'N'
-    }
-}
+import { TRobotOrientation } from "./types/robotOrientation.type";
+import { TRobotRotation } from "./types/robotRotation.type";
+import { rotateRobot } from "./utils/rotateRobot";
+
 
 function analyseRobotPositions (
     gridConfiguration: [number, number],
     robotsSettings: { 
         initialPosition: {
             coordinate: [number, number],
-            orientation: 'N'| 'S' | 'W' | 'E'
+            orientation: TRobotOrientation
         },
         movementInstructions: string
     }[]
@@ -39,9 +25,22 @@ function analyseRobotPositions (
 
         // initialize robot
         let robotPosition: [number, number] = JSON.parse(JSON.stringify(robotSetting.initialPosition.coordinate));
-        let robotOrientation: string = robotSetting.initialPosition.orientation;
+        let robotOrientation: TRobotOrientation =  robotSetting.initialPosition.orientation;
 
+        // for type safety
+        const arrayOfMovementInstructions: TRobotRotation[] = robotSetting.movementInstructions.split('') as TRobotRotation[];
 
+        for (let instruction of arrayOfMovementInstructions) {
+
+            //rotate
+            if (instruction === 'L' || instruction === 'R') {
+
+                robotOrientation = rotateRobot(robotOrientation, instruction);
+            }
+
+            
+        }
+    
     }
 }
 

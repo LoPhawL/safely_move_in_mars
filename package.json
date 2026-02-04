@@ -1,0 +1,16 @@
+{
+  "name": "red_badger_coding",
+  "version": "1.0.0",
+  "main": "output/app/grid_on_mars.js",
+  "directories": {
+    "test": "test",
+    "run": "tsc && node app/grid_on_mars.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
