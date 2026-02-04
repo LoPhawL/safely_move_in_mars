@@ -50,7 +50,7 @@ But, this tool can be **extended** to add new commands. Please follow the below 
 	- Example: 
 		- `B`  - a command that would modify the **position** of the robot, hence **[PositionModifier](https://github.com/LoPhawL/safely_move_in_mars/blob/main/app/utils/robotInstructions/PositionInstructions/PositionModifier.ts)**
 		-  `L270` - a command that would modify the **orientation** of the robot, hence **[OrientationModifier](https://github.com/LoPhawL/safely_move_in_mars/blob/main/app/utils/robotInstructions/OrientationInstructions/OrientationModifier.ts)**
-3.  By extending either the OrientationModifier or the PositionModifier, create a class representing the new command and implement the extended **Modifier** class with the logic of the instruction inside the contracted functions.
+3.  By extending either the OrientationModifier or the PositionModifier, create a class representing the new command and implement the extended **Modifier** class. The behavior of the robot for the new instruction or command should be implemented inside the contracted functions. (Refer the implementation of **[MoveForward](https://github.com/LoPhawL/safely_move_in_mars/blob/main/app/utils/robotInstructions/PositionInstructions/MoveForward.ts)**)
 	 - Example: 
 		- `B`  
 			> class  MoveBackward  extends  PositionModifier {
@@ -70,4 +70,4 @@ But, this tool can be **extended** to add new commands. Please follow the below 
 			> B: new MoveBackward()
 
 
-After completing these steps, when the new instruction (or the command) `B` is passed, it will compute the modified position of the robot based on the logic that is defined in the contracted `rePosition` function in the `MoveBackward` class.
+After completing these steps, when the new instruction (or the command) `B` is passed in the input, it will compute the modified position of the robot based on the logic that would be defined in the contracted `rePosition` function in the `MoveBackward` class.
