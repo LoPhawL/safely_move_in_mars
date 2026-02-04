@@ -9,6 +9,12 @@ function analyseRobotPositions (
     }[]
 ) {
 
+    // initialize grid
+    const bound_x_0 = 0;
+    const bound_y_0 = 0;
+
+    const bound_x_1 = gridConfiguration[0];
+    const bound_y_1 = gridConfiguration[1];
 }
 
 
