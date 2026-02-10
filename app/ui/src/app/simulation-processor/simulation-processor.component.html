@@ -68,7 +68,16 @@
 
                                     <input [formControl]="robotConfig.controls.robotPositionY" type="number" style="width: 23%" class="form-control form-control-sm me-2" placeholder="Y" >
 
-                                    <input [formControl]="robotConfig.controls.robotOrientation" type="text" style="width: 40%" class="form-control form-control-sm" placeholder="Direction" >
+                                    <input 
+                                        [formControl]="robotConfig.controls.robotOrientation" 
+                                        type="text" 
+                                        style="width: 40%"
+                                        class="form-control form-control-sm"
+                                        placeholder="Direction"
+                                        [ngClass]="{
+                                            'border border-danger': !robotConfig.controls.robotOrientation.untouched &&  !robotConfig.controls.robotOrientation.valid
+                                        }"
+                                    >
                                 </td>
                                 <td style="padding-top: 12px; padding-bottom: 12px;">
                                     <input [formControl]="robotConfig.controls.robotInstructions" type="text" style="width: 87%;" class="form-control form-control-sm" placeholder="Instructions">

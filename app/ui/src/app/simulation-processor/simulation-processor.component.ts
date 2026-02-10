@@ -1,10 +1,12 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { SimulationOutputComponent } from './simulation-output/simulation-output.component';
+import { orientationValidator } from '../../validators/orientation.validator';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-simulation-processor',
-  imports: [ReactiveFormsModule, SimulationOutputComponent],
+  imports: [ReactiveFormsModule, SimulationOutputComponent, NgClass],
   templateUrl: './simulation-processor.component.html',
   styleUrl: './simulation-processor.component.css'
 })
@@ -13,7 +15,6 @@ export class SimulationProcessor {
   constructor(private _cdRef: ChangeDetectorRef) {}
 
   resultOutput: string[] = [];
-
 
   @Input()
   public robotsConfigurationForm = new FormGroup({
@@ -82,7 +83,7 @@ export class SimulationProcessor {
       new FormGroup({
         robotPositionX: new FormControl('', [Validators.required]),
         robotPositionY: new FormControl('', [Validators.required]),
-        robotOrientation: new FormControl('', [Validators.required]),
+        robotOrientation: new FormControl('', [Validators.required, orientationValidator]),
         robotInstructions: new FormControl('', [Validators.required, Validators.maxLength(99)]), //maxsize, 
       })
     );
@@ -140,7 +141,7 @@ export class SimulationProcessor {
     return new FormGroup({
         robotPositionX: new FormControl('', [Validators.required, Validators.min(0)]),
         robotPositionY: new FormControl('', [Validators.required, Validators.min(0)]),
-        robotOrientation: new FormControl('', [Validators.required]),
+        robotOrientation: new FormControl('', [Validators.required, orientationValidator]),
         robotInstructions: new FormControl('', [Validators.required, Validators.maxLength(99)]), //maxsize, 
       })
   }
