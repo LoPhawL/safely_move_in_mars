@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { SimulationOutputComponent } from './simulation-output/simulation-output.component';
 import { orientationValidator } from '../../validators/orientation.validator';
+import { instructionValidator } from '../../validators/instruction.validator';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -84,7 +85,7 @@ export class SimulationProcessor {
         robotPositionX: new FormControl('', [Validators.required]),
         robotPositionY: new FormControl('', [Validators.required]),
         robotOrientation: new FormControl('', [Validators.required, orientationValidator]),
-        robotInstructions: new FormControl('', [Validators.required, Validators.maxLength(99)]), //maxsize, 
+        robotInstructions: new FormControl('', [Validators.required, Validators.maxLength(99), instructionValidator]), //maxsize, 
       })
     );
   };
@@ -142,7 +143,7 @@ export class SimulationProcessor {
         robotPositionX: new FormControl('', [Validators.required, Validators.min(0)]),
         robotPositionY: new FormControl('', [Validators.required, Validators.min(0)]),
         robotOrientation: new FormControl('', [Validators.required, orientationValidator]),
-        robotInstructions: new FormControl('', [Validators.required, Validators.maxLength(99)]), //maxsize, 
+        robotInstructions: new FormControl('', [Validators.required, Validators.maxLength(99), instructionValidator]), //maxsize, 
       })
   }
   

@@ -80,7 +80,16 @@
                                     >
                                 </td>
                                 <td style="padding-top: 12px; padding-bottom: 12px;">
-                                    <input [formControl]="robotConfig.controls.robotInstructions" type="text" style="width: 87%;" class="form-control form-control-sm" placeholder="Instructions">
+                                    <input 
+                                        [formControl]="robotConfig.controls.robotInstructions" 
+                                        type="text"
+                                        style="width: 87%;" 
+                                        class="form-control form-control-sm" 
+                                        placeholder="Instructions"
+                                        [ngClass]="{
+                                            'border border-danger': !robotConfig.controls.robotInstructions.untouched &&  !robotConfig.controls.robotInstructions.valid
+                                        }"
+                                        >
                                 </td>
                                 <td class="d-flex" style="justify-content: center;">
                                 <button type="button" style="z-index: 1;" class="btn btn-sm btn-outline-danger" [disabled]="robotsConfigurationForm.disabled" (click)="removeRobot(inn)">&times;</button>
