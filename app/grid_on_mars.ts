@@ -15,6 +15,7 @@ export function analyseRobotPositions (
         movementInstructions: string
     }[]
 ) {
+    const result: string[] = [];
 
     // initialize grid
     const bound_x_0 = 0;
@@ -65,7 +66,9 @@ export function analyseRobotPositions (
 
                     // the robot would have been lost
                     losingPositions.push(`${robotCoordinate[0]} ${robotCoordinate[1]} ${robotOrientation}`);
-                    console.log(`${robotCoordinate[0]} ${robotCoordinate[1]} ${robotOrientation} LOST`);
+                    const position = `${robotCoordinate[0]} ${robotCoordinate[1]} ${robotOrientation} LOST`;
+                    console.log(position);
+                    result.push(position)
                     continue eachRobot;
                 } else {
 
@@ -73,6 +76,10 @@ export function analyseRobotPositions (
                 }
             }
         }
-        console.log(`${robotCoordinate[0]} ${robotCoordinate[1]} ${robotOrientation}`);
+        const position = `${robotCoordinate[0]} ${robotCoordinate[1]} ${robotOrientation}`
+        console.log(position);
+        result.push(position)
     }
+
+    return result;
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {FormGroup, FormControl, ReactiveFormsModule, Validators, FormArray} from '@angular/forms';
 
@@ -16,15 +16,20 @@ export class AppComponent {
     gridSizeY: new FormControl('', [Validators.required, Validators.min(1), Validators.max(50)]),
 
     robotConfiguration: new FormArray([
-      new FormGroup({
-        robotPositionX: new FormControl('', [Validators.required]),
-        robotPositionY: new FormControl('', [Validators.required]),
+      this.getNewRobotConfiguration()
+    ])
+  })
+  disableAllInputs: boolean = false;
+
+  private getNewRobotConfiguration() {
+
+    return new FormGroup({
+        robotPositionX: new FormControl('', [Validators.required, Validators.min(0)]),
+        robotPositionY: new FormControl('', [Validators.required, Validators.min(0)]),
         robotOrientation: new FormControl('', [Validators.required]),
         robotInstructions: new FormControl('', [Validators.required, Validators.maxLength(99)]), //maxsize, 
       })
-    ])
-  })
-
+  }
   loadDefaultValues() {
 
     this.robotsConfigurationForm.reset();
@@ -38,12 +43,7 @@ export class AppComponent {
     while (robotConfigArray.length < 3) {
 
       robotConfigArray.push(
-        new FormGroup({
-          robotPositionX: new FormControl('', [Validators.required]),
-          robotPositionY: new FormControl('', [Validators.required]),
-          robotOrientation: new FormControl('', [Validators.required]),
-          robotInstructions: new FormControl('', [Validators.required, Validators.maxLength(99)]),
-        })
+        this.getNewRobotConfiguration()
       );
     }
     
@@ -86,9 +86,32 @@ export class AppComponent {
 
     this.robotsConfigurationForm.controls.robotConfiguration.removeAt(inn);
   }
+
   onCompute($event: Event) {
       $event.preventDefault();
-      console.log(this.robotsConfigurationForm);
       
+      this.disableAllInputs = true;
+      this.robotsConfigurationForm.disable();
+
+      const formValues = this.robotsConfigurationForm.value;
+      
+      const gridDimensions: [number, number] = [Number(formValues.gridSizeX), Number(formValues.gridSizeY)]
+      const robotSettings: any = [];
+
+      for(let robConf of formValues.robotConfiguration!) {
+
+        robotSettings.push({
+          initialPosition: {
+            coordinate: [Number(robConf.robotPositionX), Number(robConf.robotPositionY)],
+            orientation: robConf.robotOrientation?.toUpperCase()
+          },
+          movementInstructions: robConf.robotInstructions?.toUpperCase()
+        });
+      }
+
+      window.electron_backbone.sendMessage({
+          gridDimensions,
+          robotSettings
+      });
   }
 }
