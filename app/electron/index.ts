@@ -1,16 +1,20 @@
 import { app, BrowserWindow } from 'electron'
+import url  from 'url'
 import path from 'path'
 
 function createWindow () {
   const win = new BrowserWindow({
     width: 1024,
     height: 768,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
   })
 
-  win.loadFile(path.join(__dirname, 'electron_layouts', 'index.html'))
+  win.loadURL(
+    url.format({
+      pathname: path.join(__dirname, '..', 'ui', 'browser', 'index.html'),
+      protocol: 'file:',
+      slashes: true
+    })
+  )
 }
 
 app.whenReady().then(() => {

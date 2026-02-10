@@ -1,0 +1,97 @@
+<header class="text-center my-4">
+        <h1 class="display-4">Tool to analyse how robots move on Mars.</h1>
+</header>
+
+<hr/>
+
+<main class="px-5">
+
+  <form onsubmit="onCompute">
+      <div class="row">
+          <div class="col-8 col-xl-7 border-end">
+              
+              <h3 class="h5 mb-4">Please enter your inputs:</h3>
+
+              <div class="row mb-4">
+                  <div class="col-7 col-xl-5">
+                      <p class="lead">
+                          1. Grid size (upper-right coordinates):
+                      </p>
+                  </div>
+                  <div class="col-2">
+                      <input name="gridSizeX" type="text" class="form-control" placeholder="X">
+                  </div>
+                  <div class="col-2">
+                      <input name="gridSizeY" type="text" class="form-control" placeholder="Y">
+                  </div>
+              </div>
+
+              <hr/>
+
+              <div>
+                  <div class="d-flex mb-3" style="justify-content: space-between;">
+
+                      <p class="lead">
+                          2. Robots Configuration:
+                      </p>
+
+                      <button type="button" class="btn btn-primary btn-sm">Add Robot</button>
+
+                  </div>
+
+                  <div class="px-3" style="max-height: 48vh; overflow-y: auto;">
+
+                      <table class="table table-stripped table-bordered">
+                          <thead class="table-light" style="position: sticky; top: 0">
+                              <tr>
+                                  <th scope="col" style="text-align: center; width: 18%" >
+                                      #
+                                  </th>
+                                  <th scope="col" style="text-align: center; width: 42%">
+                                      Robot Position
+                                  </th>
+                                  <th scope="col" style="text-align: center; width: 40%">
+                                      Instructions
+                                  </th>
+                              </tr>
+                          </thead>
+                          <tbody style="max-height: 40vh; overflow-y: auto;">
+                              <tr>
+                                  <td style="white-space: nowrap; align-items: center; vertical-align: middle;">
+                                      Robot 1
+                                  </td>
+                                  <td class="d-flex" style="padding-top: 12px; padding-bottom: 12px; justify-content: center;">
+                                      <input type="text" style="width: 22%" class="form-control form-control-sm me-2" placeholder="X">
+
+                                      <input type="text" style="width: 22%" class="form-control form-control-sm me-2" placeholder="Y" >
+
+                                      <input type="text" style="width: 43%" class="form-control form-control-sm" placeholder="Direction" >
+
+                                  </td>
+                                  <td style="padding-top: 12px; padding-bottom: 12px;">
+                                      <input type="text" style="width: 87%;" class="form-control form-control-sm" placeholder="Instructions">
+                                  </td>
+                              </tr>
+                          </tbody>
+                          
+                      </table>
+                  </div>
+              </div>
+
+              <div class="text-center mt-4">
+                  <button class="btn btn-success" tyle="Submit">
+                      Compute
+                  </button>
+              </div>
+          </div>
+          <div class="col-4 col-xl-5 ps-3">
+              <h3 class="h5 mb-4">Outputs</h3>
+              <div id="robot_analysis_output_container">
+
+              </div>
+          </div>
+      </div>
+  </form>
+</main>
+
+<router-outlet />
