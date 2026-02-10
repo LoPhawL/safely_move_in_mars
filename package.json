@@ -7,7 +7,10 @@
   },
   "scripts": {
     "test": "node_modules\\.bin\\tsc && node_modules\\.bin\\jest --config=jest.config.json",
-    "check_robots": "node_modules\\.bin\\tsc && node output/app/index.js",
+    "build": "rm -rf output && node_modules\\.bin\\tsc",
+    "copy_layouts": "cp -r ./app/electron_layouts ./output/app/electron_layouts",
+    "start_electron_app": "node_modules\\.bin\\electron output/app/index.js",
+    "check_robots": "npm run build && npm run copy_layouts && npm run start_electron_app",
     "start": "npm run check_robots"
   },
   "keywords": [],
@@ -15,10 +18,12 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bootstrap": "^5.3.8",
     "jest": "^30.2.0",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@types/jest": "^30.0.0"
+    "@types/jest": "^30.0.0",
+    "electron": "^40.2.1"
   }
 }
