@@ -1,0 +1,10 @@
+<h3 class="h5 mb-3">Outputs</h3>
+@if (resultOutput && resultOutput.length) {
+    <ul class="list-group list-group-flush mb-5">
+        @for (resultLine of resultOutput; track resultLine) {
+            <li class="list-group-item">{{resultLine}}</li>
+        }
+    </ul>
+
+    <button type="button" class="btn btn-warning" (click)="reset()">Reset</button>
+}
