@@ -14,7 +14,8 @@ declare global {
                         movementInstructions: string
                     }[]
                 }
-            ) => void
+            ) => void,
+            onMessageResult: (responseHandler: Function) => void
         }
     }
 }

@@ -52,6 +52,5 @@ ipcMain.on('message', (event, message: {
 } ) => {
 
   const res = analyseRobotPositions(message.gridDimensions, message.robotSettings);
-  console.log(res.join('\n'));
-  
+  event.reply('message-result', res);  
 });

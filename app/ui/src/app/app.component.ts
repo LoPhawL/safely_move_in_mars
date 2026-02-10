@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ApplicationRef, ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {FormGroup, FormControl, ReactiveFormsModule, Validators, FormArray} from '@angular/forms';
 
@@ -19,7 +19,22 @@ export class AppComponent {
       this.getNewRobotConfiguration()
     ])
   })
-  disableAllInputs: boolean = false;
+  resultOutput: string[] = [];
+
+  constructor(private _cdRef: ChangeDetectorRef) {
+
+  }
+
+  ngOnInit(): void {
+    if (window.electron_backbone?.onMessageResult) {
+
+      window.electron_backbone.onMessageResult((result: string[]) => {
+        
+        this.resultOutput = result;
+        this._cdRef.markForCheck();
+      });
+    }
+  }
 
   private getNewRobotConfiguration() {
 
@@ -87,10 +102,25 @@ export class AppComponent {
     this.robotsConfigurationForm.controls.robotConfiguration.removeAt(inn);
   }
 
+  reset() {
+
+    this.resultOutput = [];
+    this.robotsConfigurationForm.enable();
+
+  }
+
+  clearFields() {
+    
+    this.robotsConfigurationForm.reset();
+    const roboConf = this.robotsConfigurationForm.controls.robotConfiguration;
+    roboConf.clear();
+    roboConf.push(this.getNewRobotConfiguration());
+    this.robotsConfigurationForm.enable();
+  }
+
   onCompute($event: Event) {
       $event.preventDefault();
       
-      this.disableAllInputs = true;
       this.robotsConfigurationForm.disable();
 
       const formValues = this.robotsConfigurationForm.value;
