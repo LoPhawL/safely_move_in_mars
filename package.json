@@ -7,14 +7,7 @@
   },
   "scripts": {
     "test": "node_modules\\.bin\\tsc && node_modules\\.bin\\jest --config=jest.config.json",
-
-    "start": "npm run remove_outdated_builds && npm run build_ui && npm run build_electron_backbone && npm run copy_ui && npm run start_electron_app",
-
-    "remove_outdated_builds": "echo \"Step - 1: Removing outdated builds if any.\" && rm -rf ./app/ui/dist && rm -rf output",
-    "build_ui": "echo \"Step - 2: Building the UI.\" && cd ./app/ui && ng build --base-href ./",
-    "build_electron_backbone": "echo \"Step - 3: Building the application.\" && node_modules\\.bin\\tsc",
-    "copy_ui": "echo \"Step - 4: Preparing the UI.\" && cp -r ./app/ui/dist/ui ./output/app",
-    "start_electron_app": "echo \"Step - 5: Starting the app.\" && node_modules\\.bin\\electron output/app/electron/index.js"
+    "start": "node ./scripts/build.js"
   },
   "keywords": [],
   "author": "",
