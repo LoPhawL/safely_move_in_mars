@@ -38,6 +38,11 @@ export function analyseRobotPositions (
         let robotCoordinate: TRobotCoordinate = JSON.parse(JSON.stringify(robotSetting.initialPosition.coordinate));
         let robotOrientation: TRobotOrientation =  robotSetting.initialPosition.orientation;
 
+        if (robotCoordinate[0] > bound_x_1 || robotCoordinate[1] > bound_y_1) {
+
+            throw new Error('E3: Robot out of bounds.');
+        }
+
         // for type safety
         const arrayOfInstructions: TRobotInstruction[] = robotSetting.movementInstructions.split('') as TRobotInstruction[];
 

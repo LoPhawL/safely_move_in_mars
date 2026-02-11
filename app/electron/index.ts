@@ -7,8 +7,8 @@ import { TRobotOrientation } from '../types/robotOrientation.type'
 
 function createWindow () {
   const win = new BrowserWindow({
-    width: 1024,
-    height: 768,
+    width: 1280,
+    height: 770,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
@@ -51,6 +51,13 @@ ipcMain.on('message', (event, message: {
   }[]
 } ) => {
 
-  const res = analyseRobotPositions(message.gridDimensions, message.robotSettings);
-  event.reply('message-result', res);  
+  let res;
+  try {
+    res = analyseRobotPositions(message.gridDimensions, message.robotSettings);
+  } catch (err: any) {
+
+    res = ['An error occurred.', 'Please make sure your inputs for "Grid SIze" and "Robots COnfiguration" are valid and within bounds.'];
+  }
+  
+  event.reply('message-result', res);
 });
