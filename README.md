@@ -1,36 +1,29 @@
+
 # Tool to analyse how Robots move in a Grid🪧
 
-This tool is built with **NodeJs** as a **CLI** application and uses **npm** for managing the dependencies. 
+This tool is built with **NodeJs**, **Electron** & **Angular** as a **Desktop** application and uses **npm** for managing the dependencies. 
 
 # Prerequisites 🔘
 
 1. **NodeJs** should be installed if unavailable. (Executing the command `node -v` should not result in error)
-2.  **npm** should be installed, which is usually automatically done in the previous step. (Executing the command `npm -v` should not result in error)
+2.  **npx** should be available, which is usually automatically available after the previous step. (Executing the command `npx -v` should not result in error)
 
 # How to run? ℹ️
 
-1. **Clone** this repo.
-2.  Go to the **root** directory of the repo (where **package.json** file is present) 
-3. Open a terminal in the root directory and execute `npm install` command and wait for it's completion.
-4. Then execute `npm start` command which starts the tool and follow the instructions on screen.
+1. **Clone** this repo. 
+	` git clone https://github.com/LoPhawL/safely_move_in_mars.git`
+2.	 Checkout the **alternate-io** branch.
+	`git checkout alternate-io`
+3.  Go to the **root** directory of the repo (where **package.json** file is present) 
+4. Open a terminal in the root directory and execute **`npm start`** command which processes all the required steps to build and open the desktop app.
+>Please note that the "npm install" command is not required before executing "npm start" and can be safely skipped.
+
 
 ## I/O structure 🧩
 
-(This tool is built as a CLI application and the terminal's stdin and stdout have to be used to interact with it.)
-To provide the inputs with the grid and robot details, follow these instructions after starting the application using `npm start`:
-> Please type `run` to continue executing the default input that is given in the problem sheet.
+A GUI tool built with Electron & Angular as a Desktop application opens up soon ater executing the "npm start" command. It has the input and output fields required to configure robot settings and see the computed final positions.
 
-Or,
-> Please provide your custom input in the below format (grid size and the bot position are separated by a comma) and enter `run` at the end of the input.
->
-	Example:
-	     1,1,E
-	     RFRFRFRF
-	     3,2,N
-	     FRRFLLFFRRFLL
-	     0,3,W
-	     LLFFFLFLFL
-         run
+<hr>
 
 ## Notes to Developers 🏗️
 
@@ -64,10 +57,11 @@ But, this tool can be **extended** to add new commands. Please follow the below 
 	 - Example: 
 		- `B`  may correspond to MoveBackward
 		- `M` may correspond to 270Rotator 
+		- 
 5.  Configure the **[instructionHandler](https://github.com/LoPhawL/safely_move_in_mars/blob/main/app/utils/robotInstructions/index.ts)** to register the newly added action. ⛓️‍💥
 	 - Example: 
 		- `MoveBackward`  
 			> B: new MoveBackward()
-
+6.  Similarly, configure the [**validator**](https://github.com/LoPhawL/safely_move_in_mars/blob/alternate-io/app/ui/src/validators/instruction.validator.ts#L3) to register the newly added action so that it can be allowed and be correctly validated in the UI. ⚖️
 
 After completing these steps, when the new instruction (or the command) `B` is passed in the input, it will compute the modified position of the robot based on the logic that would be defined in the contracted `rePosition` function in the `MoveBackward` class.
