@@ -1,10 +1,14 @@
-# A Notice 📢
- 
-A better UI based I/O, available as a Desktop application (built with Electron and Angular) is pushed to the [alternate-io](https://github.com/LoPhawL/safely_move_in_mars/tree/alternate-io) branch.
-**(However, only the commits that are in the "main" branch were made within the 2-3 hour mark.)**
-Please visit that branch to see the simplified UI specific installation instructions.
 
-# Tool to analyse how Robots move in a Grid🪧
+# Notice of some recent additions: 📢
+
+- A UI based I/O, available as a **Desktop application** (built with **Electron** and **Angular**) is pushed to the [alternate-io](https://github.com/LoPhawL/safely_move_in_mars/tree/alternate-io) branch.
+- **(However, only the commits that are in the "main" branch were made within the 2-3 hour mark.)**
+- Please visit that branch to see the simplified UI specific installation instructions.
+<hr>
+Following details are specific to only the "main" branch.
+<hr>
+
+# CLI App - A tool to analyse how Robots move in a Grid🪧
 
 This tool is built with **NodeJs** as a **CLI** application and uses **npm** for managing the dependencies. 
 
@@ -57,7 +61,7 @@ But, this tool can be **extended** to add new commands. Please follow the below 
 	- Example: 
 		- `B`  - a command that would modify the **position** of the robot, hence **[Position Modifier](https://github.com/LoPhawL/safely_move_in_mars/blob/main/app/utils/robotInstructions/PositionInstructions/PositionModifier.ts)**
 		-  `L270` - a command that would modify the **orientation** of the robot, hence **[Orientation Modifier](https://github.com/LoPhawL/safely_move_in_mars/blob/main/app/utils/robotInstructions/OrientationInstructions/OrientationModifier.ts)**
-3.  By extending either the OrientationModifier or the PositionModifier, create a class representing the new command and implement the extended **Modifier** class. The behavior of the robot for the new instruction or command should be implemented inside the contracted functions. (Refer the implementation of **[MoveForward](https://github.com/LoPhawL/safely_move_in_mars/blob/main/app/utils/robotInstructions/PositionInstructions/MoveForward.ts)**)
+3.  By extending either the OrientationModifier or the PositionModifier, create a class representing the new command and implement the extended **Modifier** class. The behavior of the robot for the new instruction or command should be implemented inside the contracted functions. (Refer the implementation of **[MoveForward](https://github.com/LoPhawL/safely_move_in_mars/blob/main/app/utils/robotInstructions/PositionInstructions/MoveForward.ts)**)✍️
 	 - Example: 
 		- `B`  
 			> class  MoveBackward  extends  PositionModifier {
