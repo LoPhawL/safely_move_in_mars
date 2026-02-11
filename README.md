@@ -1,3 +1,9 @@
+# A Notice 📢
+ 
+A better UI based I/O, available as a Desktop application (built with Electron and Angular) is pushed to the [alternate-io](https://github.com/LoPhawL/safely_move_in_mars/tree/alternate-io) branch.
+**(However, only the commits that are in the "main" branch were made within the 2-3 hour mark.)**
+Please visit that branch to see the simplified UI specific installation instructions.
+
 # Tool to analyse how Robots move in a Grid🪧
 
 This tool is built with **NodeJs** as a **CLI** application and uses **npm** for managing the dependencies. 
