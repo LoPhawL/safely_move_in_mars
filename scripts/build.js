@@ -10,6 +10,15 @@ const angularRoot = path.join(__dirname,'..' ,'app', 'ui');
 
 try {
 
+    console.log('>>>>>>>> Pulling the Desktop App branch. <<<<<<<<\n');
+    execSync("git pull origin alternate-io");
+} catch {
+
+    console.log('>>>>>>>> Attempt to pull the Desktop App resulted in error. Please pull the branch manually if required. The build will continue with the next steps. <<<<<<<<\n');
+}
+
+try {
+
     require.resolve('electron', { paths: [electronBackboneRoot] });
     console.log('>>>>>>>> The Desktop app is ready. <<<<<<<<\n');
     /*
