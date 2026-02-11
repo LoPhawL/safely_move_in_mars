@@ -12,8 +12,8 @@ This tool is built with **NodeJs**, **Electron** & **Angular** as a **Desktop** 
 
 1. **Clone** this repo. 
 	` git clone https://github.com/LoPhawL/safely_move_in_mars.git`
-2.	 Checkout the **alternate-io** branch.
-	`git checkout alternate-io`
+2.	 Checkout and pull the **alternate-io** branch.
+	`git checkout alternate-io` and `git pull origin alternate-io`.
 3.  Go to the **root** directory of the repo (where **package.json** file is present) 
 4. Open a terminal in the root directory and execute **`npm start`** command which processes all the required steps to build and open the desktop app.
 >Please note that the "npm install" command is not required before executing "npm start" and can be safely skipped.
