@@ -3,7 +3,7 @@
 
 This tool is built with **NodeJs**, **Electron** & **Angular** as a **Desktop** application and uses **npm** for managing the dependencies. 
 
-# Prerequisites 🔘
+# Prerequisites ✅
 
 1. **NodeJs** should be installed if unavailable. (Executing the command `node -v` should not result in error)
 2.  **npx** should be available, which is usually automatically available after the previous step. (Executing the command `npx -v` should not result in error)
@@ -41,9 +41,9 @@ But, this tool can be **extended** to add new commands. Please follow the below 
 		-  `L270` - rotate 270 degrees to the left.
 2. Classify the type of the action. 🗂️
 	- Example: 
-		- `B`  - a command that would modify the **position** of the robot, hence **[PositionModifier](https://github.com/LoPhawL/safely_move_in_mars/blob/main/app/utils/robotInstructions/PositionInstructions/PositionModifier.ts)**
-		-  `L270` - a command that would modify the **orientation** of the robot, hence **[OrientationModifier](https://github.com/LoPhawL/safely_move_in_mars/blob/main/app/utils/robotInstructions/OrientationInstructions/OrientationModifier.ts)**
-3.  By extending either the OrientationModifier or the PositionModifier, create a class representing the new command and implement the extended **Modifier** class. The behavior of the robot for the new instruction or command should be implemented inside the contracted functions. (Refer the implementation of **[MoveForward](https://github.com/LoPhawL/safely_move_in_mars/blob/main/app/utils/robotInstructions/PositionInstructions/MoveForward.ts)**)
+		- `B`  - a command that would modify the **position** of the robot, hence **[Position Modifier](https://github.com/LoPhawL/safely_move_in_mars/blob/main/app/utils/robotInstructions/PositionInstructions/PositionModifier.ts)**
+		-  `L270` - a command that would modify the **orientation** of the robot, hence **[Orientation Modifier](https://github.com/LoPhawL/safely_move_in_mars/blob/main/app/utils/robotInstructions/OrientationInstructions/OrientationModifier.ts)**
+3.  By extending either the OrientationModifier or the PositionModifier, create a class representing the new command and implement the extended **Modifier** class. The behavior of the robot for the new instruction or command should be implemented inside the contracted functions. (Refer the implementation of **[MoveForward](https://github.com/LoPhawL/safely_move_in_mars/blob/main/app/utils/robotInstructions/PositionInstructions/MoveForward.ts)**)✍️
 	 - Example: 
 		- `B`  
 			> class  MoveBackward  extends  PositionModifier {
